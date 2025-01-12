@@ -3,6 +3,8 @@ import { DataService } from '../services/data.service';
 import { Schedule } from '../data/schedule';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Train } from '../data/train';
+import { Station } from '../data/station';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +14,13 @@ import { FormsModule } from '@angular/forms';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  stations?: { id: string, name: string }[];
+  stations?: { id: string, data: Station }[];
   from?: string;
   to?: string;
   schedule?: Schedule;
-  trains?: { id: string, from: number, to: number, days?: string, destination: string, late: boolean }[];
+  trains?: Train[];
+  holidayTrains?: Set<string>;
+  workdayTrains?: Set<string>;
 
   constructor(private dataService: DataService) { }
 
@@ -25,10 +29,10 @@ export class AppComponent implements OnInit {
   }
 
   search() {
-    if (!this.schedule || !this.from || !this.to) {
+    if (!this.schedule || !this.from || !this.to || !this.holidayTrains || !this.workdayTrains) {
       return;
     }
-    const trains = [];
+    const trains: Train[] = [];
     const now = this.now();
     for (const trainId of Object.keys(this.schedule.trains)) {
       const train = this.schedule.trains[trainId];
@@ -39,8 +43,8 @@ export class AppComponent implements OnInit {
       }
       trains.push({
         id: trainId, from: trainFrom, to: trainTo,
-        days: this.schedule.holidayTrains.includes(trainId) ? "holiday"
-          : this.schedule.workdayTrains.includes(trainId) ? "workday" : undefined,
+        days: this.holidayTrains.has(trainId) ? "holiday"
+          : this.workdayTrains.has(trainId) ? "workday" : undefined,
         destination: this.schedule.stations[Object.keys(train).reduce((res, curr) => {
           const time = train[curr];
           if (res.time < time) {
@@ -63,9 +67,11 @@ export class AppComponent implements OnInit {
 
   private showSchedule(schedule: Schedule) {
     this.stations = Object.keys(schedule.stations)
-      .map(k => ({ id: k, name: schedule.stations[k] }))
-      .sort((a, b) => a.name.localeCompare(b.name));
+      .map(k => ({ id: k, data: schedule.stations[k] }))
+      .sort((a, b) => a.data.name.localeCompare(b.data.name));
     this.schedule = schedule;
+    this.holidayTrains = new Set(schedule.holidayTrains);
+    this.workdayTrains = new Set(schedule.workdayTrains);
   }
 
   private now() {

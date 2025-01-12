@@ -3,14 +3,14 @@
   <div>
     From
     <select [(ngModel)]="from">
-      <option *ngFor="let station of stations" [value]="station.id">{{station.name}}</option>
+      <option *ngFor="let station of stations" [value]="station.id">{{station.data.name}}</option>
     </select>
   </div>
 
   <div>
     To
     <select [(ngModel)]="to">
-      <option *ngFor="let station of stations" [value]="station.id">{{station.name}}</option>
+      <option *ngFor="let station of stations" [value]="station.id">{{station.data.name}}</option>
     </select>
   </div>
 
@@ -24,7 +24,7 @@
 <div class="trains">
   <div *ngFor="let train of trains" [ngClass]="train.days" [class.late]="train.late">
     <div>{{train.id}}: {{train.from | currency : ' '}} - {{train.to | currency : ' '}}</div>
-    <div class="destination">{{train.destination}}</div>
+    <div class="destination">{{train.destination.name}}</div>
   </div>
 
 </div>

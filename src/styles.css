@@ -1,0 +1,30 @@
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: large;
+}
+
+.holiday {
+    background: #FFCC99;
+}
+
+.workday {
+    background: #CCFFCC;
+}
+
+.button {
+    font-size: large;
+    padding: 10px 30px;
+}
+
+.form>div+div {
+    margin-top: 20px;
+}
+
+.trains {
+    margin-top: 20px;
+}
+
+.trains>div+div {
+    margin-top: 5px;
+}

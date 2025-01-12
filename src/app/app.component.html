@@ -1,0 +1,26 @@
+<div class="form">
+
+  <div>
+    From
+    <select [(ngModel)]="from">
+      <option *ngFor="let station of stations" [value]="station.id">{{station.name}}</option>
+    </select>
+  </div>
+
+  <div>
+    To
+    <select [(ngModel)]="to">
+      <option *ngFor="let station of stations" [value]="station.id">{{station.name}}</option>
+    </select>
+  </div>
+
+  <div>
+    <input class="button" type="submit" value="Search" (click)="search()">
+    <input style="float: right" class="button" type="button" value="↑↓" (click)="swap()">
+  </div>
+
+</div>
+
+<div class="trains">
+  <div *ngFor="let train of trains" [ngClass]="train.days">{{train.id}}: {{train.from}} - {{train.to}}</div>
+</div>

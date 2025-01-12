@@ -28,3 +28,15 @@ select {
 .trains>div+div {
     margin-top: 5px;
 }
+
+.trains div div {
+    display: inline-block;
+}
+
+.trains .destination {
+    float: right;
+}
+
+.trains .late {
+    color: #C0C0C0
+}

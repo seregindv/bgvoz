@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   from?: string;
   to?: string;
   schedule?: Schedule;
-  trains?: { id: string, from: number, to: number, days?: string }[];
+  trains?: { id: string, from: number, to: number, days?: string, destination: string, late: boolean }[];
 
   constructor(private dataService: DataService) { }
 
@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
       return;
     }
     const trains = [];
+    const now = this.now();
     for (const trainId of Object.keys(this.schedule.trains)) {
       const train = this.schedule.trains[trainId];
       const trainFrom = train[this.from];
@@ -39,7 +40,16 @@ export class AppComponent implements OnInit {
       trains.push({
         id: trainId, from: trainFrom, to: trainTo,
         days: this.schedule.holidayTrains.includes(trainId) ? "holiday"
-          : this.schedule.workdayTrains.includes(trainId) ? "workday" : undefined
+          : this.schedule.workdayTrains.includes(trainId) ? "workday" : undefined,
+        destination: this.schedule.stations[Object.keys(train).reduce((res, curr) => {
+          const time = train[curr];
+          if (res.time < time) {
+            res.id = curr;
+            res.time = time;
+          }
+          return res;
+        }, { id: "", time: 0 }).id],
+        late: trainFrom < now
       });
     }
     this.trains = trains.sort((a, b) => a.from - b.from);
@@ -58,5 +68,8 @@ export class AppComponent implements OnInit {
     this.schedule = schedule;
   }
 
-  title = 'bgvoz';
+  private now() {
+    const today = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Belgrade" }));
+    return today.getHours() + today.getMinutes() / 60;
+  }
 }

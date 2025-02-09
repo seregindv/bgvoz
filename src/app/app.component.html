@@ -22,9 +22,16 @@
 </div>
 
 <div class="trains">
-  <div *ngFor="let train of trains" [ngClass]="train.days" [class.late]="train.late">
-    <div>{{train.id}}: {{train.from | currency : ' '}} - {{train.to | currency : ' '}}</div>
-    <div class="destination">{{train.destination.name}}</div>
+  <div [class.hidden]="!notFound" class="no-trains">No trains found</div>
+  <div *ngFor="let train of trains" class="train" [ngClass]="train.days" [class.late]="train.late">
+    <div>{{train.id}} {{train.origin.name}} — {{train.destination.name}}</div>
+    <div class="time-line">
+      <div class="departure-time">{{train.from | currency : ' '}}</div>
+      <div class="line"></div>
+      <div class="duration">{{train.duration}}</div>
+      <div class="line"></div>
+      <div class="arrival-time">{{train.to | currency : ' '}}</div>
+    </div>
   </div>
 
 </div>

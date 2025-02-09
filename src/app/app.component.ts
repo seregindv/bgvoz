@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   trains?: Train[];
   holidayTrains?: Set<string>;
   workdayTrains?: Set<string>;
+  notFound = false;
 
   constructor(private dataService: DataService) { }
 
@@ -29,7 +30,9 @@ export class AppComponent implements OnInit {
   }
 
   search() {
-    if (!this.schedule || !this.from || !this.to || !this.holidayTrains || !this.workdayTrains) {
+    this.notFound = false;
+    if (!this.schedule || !this.from || !this.to || !this.holidayTrains || !this.workdayTrains || this.from === this.to) {
+      this.notFound = true;
       return;
     }
     const trains: Train[] = [];
@@ -41,28 +44,52 @@ export class AppComponent implements OnInit {
       if (trainFrom == null || trainTo == null || trainFrom > trainTo) {
         continue;
       }
+      let originTime = 10000, destinationTime = 0;
+      let originStationId = "", destinationStationId = "";
+      for (const stationId of Object.keys(train)) {
+        const time = train[stationId];
+        if (time < originTime) {
+          originTime = time;
+          originStationId = stationId;
+        }
+        if (time > destinationTime) {
+          destinationTime = time;
+          destinationStationId = stationId;
+        }
+      }
       trains.push({
-        id: trainId, from: trainFrom, to: trainTo,
+        id: trainId,
+        from: trainFrom,
+        to: trainTo,
         days: this.holidayTrains.has(trainId) ? "holiday"
           : this.workdayTrains.has(trainId) ? "workday" : undefined,
-        destination: this.schedule.stations[Object.keys(train).reduce((res, curr) => {
-          const time = train[curr];
-          if (res.time < time) {
-            res.id = curr;
-            res.time = time;
-          }
-          return res;
-        }, { id: "", time: 0 }).id],
-        late: trainFrom < now
+        origin: this.schedule.stations[originStationId],
+        destination: this.schedule.stations[destinationStationId],
+        late: trainFrom < now,
+        duration: this.getDuration(trainFrom, trainTo)
       });
     }
     this.trains = trains.sort((a, b) => a.from - b.from);
+    this.notFound = !this.trains[0];
   }
 
   swap() {
     const tmp = this.from;
     this.from = this.to;
     this.to = tmp;
+  }
+
+  private getDuration(from: number, to: number) {
+    const minuteDiff = Math.floor(to * 100 % 100 - from * 100 % 100)
+    const hourDiff = Math.floor(to) - Math.floor(from);
+    const diff = hourDiff * 60 + minuteDiff;
+    const minutes = diff % 60;
+    const hours = Math.floor(diff / 60);
+    let result = `${minutes} minutes`
+    if (hours > 0) {
+      result = `${hours} ${hours > 1 ? 'hours' : 'hour'} ${result}`
+    }
+    return result;
   }
 
   private showSchedule(schedule: Schedule) {

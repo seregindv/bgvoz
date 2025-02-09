@@ -5,6 +5,8 @@ export class Train {
     from: number = null!;
     to: number = null!;
     days?: string;
+    origin: Station = null!;
     destination: Station = null!;
     late: boolean = null!;
+    duration: string = null!;
 }

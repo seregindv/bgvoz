@@ -1,3 +1,7 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif
+}
+
 select {
     width: 100%;
     padding: 10px;
@@ -23,20 +27,55 @@ select {
 
 .trains {
     margin-top: 20px;
+    color: #333;
 }
 
-.trains>div+div {
-    margin-top: 5px;
+.train {
+    box-shadow: 0 4px 12px -4px rgba(13, 35, 67, .15), 0 0 2px rgba(13, 35, 67, .3);
+    border-radius: 8px;
+    padding: 12px;
 }
 
-.trains div div {
-    display: inline-block;
+.train .departure-time {
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 700;
 }
 
-.trains .destination {
-    float: right;
+.train .arrival-time {
+    font-size: 22px;
+    line-height: 26px;
+}
+
+.train .duration {
+    color: #999;
+}
+
+.train .time-line {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.train .time-line .line {
+    flex-grow: 1;
+    height: 1px;
+    background-color: #e6e6e6;
+}
+
+.train+.train {
+    margin-top: 12px;
 }
 
 .trains .late {
     color: #C0C0C0
+}
+
+.no-trains {
+    text-align: center;
+    color: #999;
+}
+
+.hidden {
+    display: none !important;
 }

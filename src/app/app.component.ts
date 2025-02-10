@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Schedule } from '../data/schedule';
 import { CommonModule } from '@angular/common';
@@ -13,7 +13,7 @@ import { Station } from '../data/station';
   templateUrl: './app.component.html',
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   stations?: { id: string, data: Station }[];
   from?: string;
   to?: string;
@@ -22,8 +22,21 @@ export class AppComponent implements OnInit {
   holidayTrains?: Set<string>;
   workdayTrains?: Set<string>;
   notFound = false;
+  @ViewChildren('train') trainElements: QueryList<ElementRef> = null!;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {
+  }
+  ngAfterViewInit(): void {
+    this.trainElements.changes.subscribe(e => {
+      let lastTrain;
+      let firstTrain = e.find((t: ElementRef) => {
+        lastTrain = t;
+        return !t.nativeElement.classList.contains('late');
+      });
+      firstTrain = firstTrain || lastTrain;
+      firstTrain?.nativeElement.scrollIntoView();
+    });
+  }
 
   ngOnInit(): void {
     this.dataService.getData().subscribe(schedule => this.showSchedule(schedule));
@@ -37,6 +50,8 @@ export class AppComponent implements OnInit {
     }
     const trains: Train[] = [];
     const now = this.now();
+    const departure = this.schedule.stations[this.from];
+    const arrival = this.schedule.stations[this.to];
     for (const trainId of Object.keys(this.schedule.trains)) {
       const train = this.schedule.trains[trainId];
       const trainFrom = train[this.from];
@@ -66,10 +81,23 @@ export class AppComponent implements OnInit {
         origin: this.schedule.stations[originStationId],
         destination: this.schedule.stations[destinationStationId],
         late: trainFrom < now,
-        duration: this.getDuration(trainFrom, trainTo)
+        duration: this.getDuration(trainFrom, trainTo),
+        departure,
+        arrival
       });
     }
     this.trains = trains.sort((a, b) => a.from - b.from);
+
+    let waitTimeIndex = 0;
+    for (let i = 0; i < this.trains.length && waitTimeIndex < 3; i++) {
+      const train = this.trains[i];
+      if (train.late) {
+        continue;
+      }
+      train.waitTime = 'in ' + this.getDuration(now, train.from);
+      waitTimeIndex++;
+    }
+
     this.notFound = !this.trains[0];
   }
 

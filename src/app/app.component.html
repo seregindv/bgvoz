@@ -23,7 +23,8 @@
 
 <div class="trains">
   <div [class.hidden]="!notFound" class="no-trains">No trains found</div>
-  <div *ngFor="let train of trains" class="train" [ngClass]="train.days" [class.late]="train.late">
+  <div *ngFor="let train of trains" #train class="train" [ngClass]="train.days" [class.late]="train.late">
+    <div class="train-label" [class.hidden]="!train.waitTime">{{train.waitTime}}</div>
     <div>{{train.id}} {{train.origin.name}} — {{train.destination.name}}</div>
     <div class="time-line">
       <div class="departure-time">{{train.from | currency : ' '}}</div>
@@ -31,6 +32,10 @@
       <div class="duration">{{train.duration}}</div>
       <div class="line"></div>
       <div class="arrival-time">{{train.to | currency : ' '}}</div>
+    </div>
+    <div class="route">
+      <div class="station">{{train.departure.name}}</div>
+      <div class="arrival station">{{train.arrival.name}}</div>
     </div>
   </div>
 

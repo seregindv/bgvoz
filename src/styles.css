@@ -34,6 +34,7 @@ select {
     box-shadow: 0 4px 12px -4px rgba(13, 35, 67, .15), 0 0 2px rgba(13, 35, 67, .3);
     border-radius: 8px;
     padding: 12px;
+    overflow: hidden;
 }
 
 .train .departure-time {
@@ -69,6 +70,31 @@ select {
 
 .trains .late {
     color: #C0C0C0
+}
+
+.train .route {
+    display: flex;
+}
+
+.train .route .station {
+    flex-grow: 1;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.train .route .arrival.station {
+    text-align: right;
+}
+
+.train-label {
+    color: #fff;
+    background-color: #f33;
+    font-size: 13px;
+    line-height: 16px;
+    display: table;
+    padding: 2px 12px;
+    border-radius: 0 0 4px 0;
+    margin: -12px 0 10px -12px;
 }
 
 .no-trains {

@@ -9,4 +9,7 @@ export class Train {
     destination: Station = null!;
     late: boolean = null!;
     duration: string = null!;
+    departure: Station = null!;
+    arrival: Station = null!;
+    waitTime?: string;
 }

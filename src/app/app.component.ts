@@ -137,8 +137,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   private now() {
-    // const today = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Belgrade" }));
-    const today = new Date(2025, 3, 1, 8, 10, 30, 330);
+    const today = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Belgrade" }));
     return today.getHours() + today.getMinutes() / 100;
   }
 }

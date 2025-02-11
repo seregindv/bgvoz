@@ -1,0 +1,186 @@
+<svg class="scheme-objects-view__scheme-svg _click-through" viewBox="0 0 3000 3500" version="1.1"
+    xmlns="http://www.w3.org/2000/svg">
+    <g>
+        <path stroke="#ffffff" stroke-width="12"
+            d="M 1129.01, 1341.16 A 365, 365 0 0 0 1119.44, 1560.47" fill="none"
+            stroke-linecap="butt" opacity="1"></path>
+        <path stroke="#894e35" stroke-width="8"
+            d="M 1129.01, 1341.16 A 365, 365 0 0 0 1119.44, 1560.47" fill="none"
+            stroke-linecap="butt" opacity="1"></path>
+        <path stroke="#ffffff" stroke-width="12"
+            d="M 1119.44, 1560.47 A 365, 365 0 0 0 1213.91, 1724.09" fill="none"
+            stroke-linecap="butt" opacity="1"></path>
+        <path stroke="#894e35" stroke-width="8"
+            d="M 1119.44, 1560.47 A 365, 365 0 0 0 1213.91, 1724.09" fill="none"
+            stroke-linecap="butt" opacity="1"></path>
+        <path stroke="#ffffff" stroke-width="12"
+            d="M 1213.91, 1724.09 A 365, 365 0 0 0 1377.53, 1818.56" fill="none"
+            stroke-linecap="butt" opacity="1"></path>
+        <path stroke="#894e35" stroke-width="8"
+            d="M 1213.91, 1724.09 A 365, 365 0 0 0 1377.53, 1818.56" fill="none"
+            stroke-linecap="butt" opacity="1"></path>
+        <path stroke="#ffffff" stroke-width="12"
+            d="M 1398, 1799 L 1384, 1813 Q 1370 1827 1370 1846.8 L 1370, 1890" fill="none"
+            stroke-linecap="butt" opacity="1"></path>
+        <path stroke="#f58220" stroke-width="8"
+            d="M 1398, 1799 L 1384, 1813 Q 1370 1827 1370 1846.8 L 1370, 1890" fill="none"
+            stroke-linecap="butt" opacity="1"></path>
+        <line stroke="#ffffff" stroke-width="12" x1="1370" x2="1370" y1="1890" y2="1955"
+            stroke-linecap="butt" fill="none" opacity="1"></line>
+        <line stroke="#f58220" stroke-width="8" x1="1370" x2="1370" y1="1890" y2="1955"
+            stroke-linecap="butt" fill="none" opacity="1"></line>
+        <line stroke="#ffffff" stroke-width="12" x1="1370" x2="1370" y1="1955" y2="2020"
+            stroke-linecap="butt" fill="none" opacity="1"></line>
+        <line stroke="#f58220" stroke-width="8" x1="1370" x2="1370" y1="1955" y2="2020"
+            stroke-linecap="butt" fill="none" opacity="1"></line>
+        <path stroke-width="2" fill="#ffffff" stroke="#000000"
+            d="M 1383.51, 1823.8 L 1403.51, 1804.8 A 8, 8 0 0 0 1392.49, 1793.2 L 1372.49, 1812.2 A 8, 8 0 0 0 1383.51, 1823.8"></path>
+        <path stroke-width="2" fill="none" stroke="#aaaaaa" d="M 1378, 1818 L 1398, 1799"></path>
+        <g class="scheme-objects-view__station">
+            <circle x="1214" y="1724" cx="1214" cy="1724" r="7" fill="#ffffff"></circle>
+            <circle x="1214" y="1724" cx="1214" cy="1724" r="5" fill="#894e35"></circle>
+        </g>
+        <g class="scheme-objects-view__station">
+            <circle x="1378" y="1818" cx="1378" cy="1818" r="7" fill="#ffffff"></circle>
+            <circle x="1378" y="1818" cx="1378" cy="1818" r="5" fill="#894e35"></circle>
+        </g>
+        <g class="scheme-objects-view__station">
+            <circle x="1129" y="1339" cx="1129" cy="1339" r="7" fill="#ffffff"></circle>
+            <circle x="1129" y="1339" cx="1129" cy="1339" r="5" fill="#894e35"></circle>
+        </g>
+        <g class="scheme-objects-view__station">
+            <circle x="1118" y="1558" cx="1118" cy="1558" r="7" fill="#ffffff"></circle>
+            <circle x="1118" y="1558" cx="1118" cy="1558" r="5" fill="#894e35"></circle>
+        </g>
+        <g class="scheme-objects-view__station">
+            <circle x="1398" y="1799" cx="1398" cy="1799" r="7" fill="#ffffff"></circle>
+            <circle x="1398" y="1799" cx="1398" cy="1799" r="5" fill="#f58220"></circle>
+        </g>
+        <g class="scheme-objects-view__station">
+            <circle x="1370" y="1890" cx="1370" cy="1890" r="8" fill="#ffffff"></circle>
+            <circle x="1370" y="1890" cx="1370" cy="1890" r="5" fill="#f58220"></circle>
+        </g>
+        <g class="scheme-objects-view__station">
+            <circle x="1370" y="1955" cx="1370" cy="1955" r="7" fill="#ffffff"></circle>
+            <circle x="1370" y="1955" cx="1370" cy="1955" r="5" fill="#f58220"></circle>
+        </g>
+        <g class="scheme-objects-view__station">
+            <circle x="1370" y="2020" cx="1370" cy="2020" r="8" fill="#ffffff"></circle>
+            <circle x="1370" y="2020" cx="1370" cy="2020" r="5" fill="#f58220"></circle>
+        </g>
+        <g class="scheme-objects-view__label">
+            <circle x="1214" y="1724" cx="1214" cy="1724" r="7" fill="#ffffff"></circle>
+            <circle x="1214" y="1724" cx="1214" cy="1724" r="5" fill="#894e35"></circle>
+            <text x="1239" y="1718" font-size="20" stroke="#ffffffe6" text-anchor="start"
+                stroke-width="4" opacity="unset" font-weight="normal">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.75em" x="1239">Парк
+                    культуры</tspan>
+            </text>
+            <text x="1239" y="1718" font-size="20" text-anchor="start" opacity="unset"
+                font-weight="normal">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.75em" x="1239">Парк
+                    культуры</tspan>
+            </text>
+        </g>
+        <g class="scheme-objects-view__label">
+            <circle x="1378" y="1818" cx="1378" cy="1818" r="7" fill="#ffffff"></circle>
+            <circle x="1378" y="1818" cx="1378" cy="1818" r="5" fill="#894e35"></circle>
+            <text x="1360" y="1810" font-size="20" stroke="#ffffffe6" text-anchor="end"
+                stroke-width="4" opacity="unset" font-weight="normal">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.75em" x="1360">
+                    Октябрьская</tspan>
+            </text>
+            <text x="1360" y="1810" font-size="20" text-anchor="end" opacity="unset"
+                font-weight="normal">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.75em" x="1360">
+                    Октябрьская</tspan>
+            </text>
+        </g>
+        <g class="scheme-objects-view__label">
+            <circle x="1129" y="1339" cx="1129" cy="1339" r="7" fill="#ffffff"></circle>
+            <circle x="1129" y="1339" cx="1129" cy="1339" r="5" fill="#894e35"></circle>
+            <text x="1118" y="1313" font-size="20" stroke="#ffffffe6" text-anchor="end"
+                stroke-width="4" opacity="unset" font-weight="bold">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.75em" x="1118">
+                    Краснопресненская</tspan>
+            </text>
+            <text x="1118" y="1313" font-size="20" text-anchor="end" opacity="unset"
+                font-weight="bold">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.75em" x="1118">
+                    Краснопресненская</tspan>
+            </text>
+        </g>
+        <g class="scheme-objects-view__label">
+            <circle x="1118" y="1558" cx="1118" cy="1558" r="7" fill="#ffffff"></circle>
+            <circle x="1118" y="1558" cx="1118" cy="1558" r="5" fill="#894e35"></circle>
+            <text x="1123" y="1530" font-size="20" stroke="#ffffffe6" text-anchor="start"
+                stroke-width="4" opacity="unset" font-weight="normal">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.75em" x="1123">
+                    Киевская</tspan>
+            </text>
+            <text x="1123" y="1530" font-size="20" text-anchor="start" opacity="unset"
+                font-weight="normal">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.75em" x="1123">
+                    Киевская</tspan>
+            </text>
+        </g>
+        <g class="scheme-objects-view__label">
+            <circle x="1398" y="1799" cx="1398" cy="1799" r="7" fill="#ffffff"></circle>
+            <circle x="1398" y="1799" cx="1398" cy="1799" r="5" fill="#f58220"></circle>
+            <text x="1360" y="1810" font-size="20" stroke="#ffffffe6" text-anchor="end"
+                stroke-width="4" opacity="unset" font-weight="normal">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.75em" x="1360">
+                    Октябрьская</tspan>
+            </text>
+            <text x="1360" y="1810" font-size="20" text-anchor="end" opacity="unset"
+                font-weight="normal">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.75em" x="1360">
+                    Октябрьская</tspan>
+            </text>
+        </g>
+        <g class="scheme-objects-view__label">
+            <circle x="1370" y="1890" cx="1370" cy="1890" r="8" fill="#ffffff"></circle>
+            <circle x="1370" y="1890" cx="1370" cy="1890" r="5" fill="#f58220"></circle>
+            <text x="1358" y="1890" font-size="20" stroke="#ffffffe6" text-anchor="end"
+                stroke-width="4" opacity="unset" font-weight="normal">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.35em" x="1358">
+                    Шаболовская</tspan>
+            </text>
+            <text x="1358" y="1890" font-size="20" text-anchor="end" opacity="unset"
+                font-weight="normal">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.35em" x="1358">
+                    Шаболовская</tspan>
+            </text>
+        </g>
+        <g class="scheme-objects-view__label">
+            <circle x="1370" y="1955" cx="1370" cy="1955" r="7" fill="#ffffff"></circle>
+            <circle x="1370" y="1955" cx="1370" cy="1955" r="5" fill="#f58220"></circle>
+            <text x="1382" y="1923" font-size="20" stroke="#ffffffe6" text-anchor="start"
+                stroke-width="4" opacity="unset" font-weight="normal">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.75em" x="1382">
+                    Ленинский</tspan>
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="19" x="1382">проспект</tspan>
+            </text>
+            <text x="1382" y="1923" font-size="20" text-anchor="start" opacity="unset"
+                font-weight="normal">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.75em" x="1382">
+                    Ленинский</tspan>
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="19" x="1382">проспект</tspan>
+            </text>
+        </g>
+        <g class="scheme-objects-view__label">
+            <circle x="1370" y="2020" cx="1370" cy="2020" r="8" fill="#ffffff"></circle>
+            <circle x="1370" y="2020" cx="1370" cy="2020" r="5" fill="#f58220"></circle>
+            <text x="1358" y="2020" font-size="20" stroke="#ffffffe6" text-anchor="end"
+                stroke-width="4" opacity="unset" font-weight="bold">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.35em" x="1358">
+                    Академическая</tspan>
+            </text>
+            <text x="1358" y="2020" font-size="20" text-anchor="end" opacity="unset"
+                font-weight="bold">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.35em" x="1358">
+                    Академическая</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

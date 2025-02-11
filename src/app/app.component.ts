@@ -94,7 +94,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       if (train.late) {
         continue;
       }
-      train.waitTime = 'in ' + this.getDuration(now, train.from);
+      train.waitTime = (train.from - now > 0) ? 'in ' + this.getDuration(now, train.from) : 'now';
       waitTimeIndex++;
     }
 
@@ -108,16 +108,20 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   private getDuration(from: number, to: number) {
-    const minuteDiff = Math.floor(to * 100 % 100 - from * 100 % 100)
+    const minuteDiff = Math.round(to * 100 % 100 - from * 100 % 100)
     const hourDiff = Math.floor(to) - Math.floor(from);
     const diff = hourDiff * 60 + minuteDiff;
     const minutes = diff % 60;
     const hours = Math.floor(diff / 60);
-    let result = `${minutes} minutes`
-    if (hours > 0) {
-      result = `${hours} ${hours > 1 ? 'hours' : 'hour'} ${result}`
+    let result;
+    if (minutes > 0) {
+      result = `${minutes} ${minutes > 1 ? 'minutes' : 'minute'}`
     }
-    return result;
+    if (hours > 0) {
+      const hourResult = `${hours} ${hours > 1 ? 'hours' : 'hour'}`;
+      result = result ? `${hourResult} ${result}` : hourResult;
+    }
+    return result || '';
   }
 
   private showSchedule(schedule: Schedule) {
@@ -130,7 +134,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   private now() {
-    const today = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Belgrade" }));
-    return today.getHours() + today.getMinutes() / 60;
+    // const today = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Belgrade" }));
+    const today = new Date(2025, 3, 1, 8, 10, 30, 330);
+    return today.getHours() + today.getMinutes() / 100;
   }
 }

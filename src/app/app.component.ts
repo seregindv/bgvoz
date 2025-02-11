@@ -110,10 +110,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   private getDuration(from: number, to: number) {
     const minuteDiff = Math.round(to * 100 % 100 - from * 100 % 100)
     const hourDiff = Math.floor(to) - Math.floor(from);
+    let result = '';
+    if (minuteDiff === 0 && hourDiff === 0) {
+      return result;
+    }
     const diff = hourDiff * 60 + minuteDiff;
     const minutes = diff % 60;
     const hours = Math.floor(diff / 60);
-    let result;
     if (minutes > 0) {
       result = `${minutes} ${minutes > 1 ? 'minutes' : 'minute'}`
     }
@@ -121,7 +124,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       const hourResult = `${hours} ${hours > 1 ? 'hours' : 'hour'}`;
       result = result ? `${hourResult} ${result}` : hourResult;
     }
-    return result || '';
+    return result;
   }
 
   private showSchedule(schedule: Schedule) {

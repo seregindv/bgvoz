@@ -35,6 +35,9 @@ select {
     border-radius: 8px;
     padding: 12px;
     overflow: hidden;
+    display: block;
+    text-decoration: none;
+    color: #333;
 }
 
 .train .departure-time {
@@ -97,9 +100,13 @@ select {
     margin: -12px 0 10px -12px;
 }
 
-.no-trains {
+.message {
     text-align: center;
     color: #999;
+}
+
+.message.error{
+    color: red;
 }
 
 .hidden {

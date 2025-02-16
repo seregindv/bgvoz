@@ -32,6 +32,7 @@ export class TrainComponent implements OnInit {
         id: stationId,
         name: station.name,
         time: train[stationId],
+        apple: `http://maps.apple.com/?ll=${station.lat},${station.lon}`,
         google: `https://www.google.com/maps/search/?api=1&query=${station.lat},${station.lon}&query_place_id=${station.placeId}`,
         osmand: `https://osmand.net/map?pin=${station.lat},${station.lon}`,
         // yandex: `https://maps.yandex.ru/?ll=${station.lon},${station.lat}&text=${station.name}&z=17`

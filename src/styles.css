@@ -113,27 +113,49 @@ select {
     display: none !important;
 }
 
-.stations {
-    margin-top: 2lh;
+.stations .header {
+    min-height: 3lh;
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    font-size: 18px;
+    background-color: #F4F4F4;
 }
 
 .stations .station {
-    min-height: 2lh;
-    display: flex;
+    height: 40px;
 }
 
-.stations .station .name {
-    flex: 1 0 auto;
+.stations .name {
+    white-space: nowrap;
+    padding-left: 5px;
 }
 
-.stations .station .links{
-    padding-right: 10px;
+.stations .time {
+    padding-right: 5px;
 }
 
-.stations .station .links *{
-    height: 2lh;
+.stations .station .links * {
+    height: 30px;
 }
 
-.stations .station .links *+*{
+.stations .station .links *+* {
     margin-left: 10px;
+}
+
+.stations table {
+    border-collapse: collapse;
+}
+
+.stations table td {
+    width: 1px;
+}
+
+.stations table tr:nth-child(even) {
+    background-color: #F0F0F0;
+}
+
+.stations table td.links {
+    width: 100%;
+    text-align: center;
 }

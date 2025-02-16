@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { DataService } from '../../services/data.service';
-import { Schedule } from '../../data/schedule';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Train } from '../../data/train';
@@ -9,6 +8,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { ScheduleData } from '../../data/schedule-data';
 import { getTitle } from '../../helpers/title';
+import { getTrainDays } from '../../helpers/train';
 
 @Component({
   selector: 'app-schedule',
@@ -20,10 +20,8 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
   stations?: { id: string, data: Station }[];
   from?: string;
   to?: string;
-  schedule?: Schedule;
+  scheduleData?: ScheduleData;
   trains?: Train[];
-  holidayTrains?: Set<string>;
-  workdayTrains?: Set<string>;
   isError = false;
   message?: string;
   @ViewChildren('train') trainElements: QueryList<ElementRef> = null!;
@@ -61,17 +59,18 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
 
   async search() {
     this.hideMessage();
-    if (!this.schedule || !this.from || !this.to || !this.holidayTrains || !this.workdayTrains || this.from === this.to) {
+    if (!this.scheduleData || !this.from || !this.to || this.from === this.to) {
       this.showNotFound();
       return;
     }
     const trains: Train[] = [];
     const now = this.now();
-    const departure = this.schedule.stations[this.from];
-    const arrival = this.schedule.stations[this.to];
+    const schedule = this.scheduleData.schedule;
+    const departure = schedule.stations[this.from];
+    const arrival = schedule.stations[this.to];
     let anyUpcoming;
-    for (const trainId of Object.keys(this.schedule.trains)) {
-      const train = this.schedule.trains[trainId];
+    for (const trainId of Object.keys(schedule.trains)) {
+      const train = schedule.trains[trainId];
       const trainFrom = train[this.from];
       const trainTo = train[this.to];
       if (trainFrom == null || trainTo == null || trainFrom > trainTo) {
@@ -98,10 +97,9 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
         id: trainId,
         from: trainFrom,
         to: trainTo,
-        days: this.holidayTrains.has(trainId) ? "holiday"
-          : this.workdayTrains.has(trainId) ? "workday" : undefined,
-        origin: this.schedule.stations[originStationId],
-        destination: this.schedule.stations[destinationStationId],
+        days: getTrainDays(trainId, this.scheduleData),
+        origin: schedule.stations[originStationId],
+        destination: schedule.stations[destinationStationId],
         late,
         duration: this.getDuration(trainFrom, trainTo),
         departure,
@@ -182,9 +180,7 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
 
   private showSchedule(scheduleData: ScheduleData) {
     this.stations = scheduleData.stations;
-    this.schedule = scheduleData.schedule;
-    this.holidayTrains = scheduleData.holidayTrains;
-    this.workdayTrains = scheduleData.workdayTrains;
+    this.scheduleData = scheduleData;
   }
 
   private now() {

@@ -1,5 +1,3 @@
-import { Station } from "../../data/station";
-
 export interface TrainStation {
     id: string;
     name: string;

@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { ScheduleData } from '../../data/schedule-data';
 import { ActivatedRoute } from '@angular/router';
-import { Station } from '../../data/station';
 import { CommonModule } from '@angular/common';
 import { TrainStation } from './train-station';
+import { getTrainDays } from '../../helpers/train';
+import { Title } from '@angular/platform-browser';
+import { getTitle } from '../../helpers/title';
 
 @Component({
   selector: 'app-train',
@@ -13,12 +15,15 @@ import { TrainStation } from './train-station';
 })
 export class TrainComponent implements OnInit {
   stations?: TrainStation[];
+  header?: string;
+  days?: string;
 
-  constructor(private dataService: DataService, private activatedRoute: ActivatedRoute) { }
+  constructor(private dataService: DataService, private activatedRoute: ActivatedRoute, private title: Title) { }
 
   ngOnInit(): void {
     this.dataService.getData().subscribe({
       next: scheduleData => this.show(scheduleData),
+      // TODO
       error: () => { }
     });
   }
@@ -39,5 +44,9 @@ export class TrainComponent implements OnInit {
         yandex: `https://yandex.com/maps?whatshere%5Bpoint%5D=${station.lon}%2C${station.lat}`
       };
     }).sort((a, b) => a.time - b.time);
+
+    this.header = `${trainId} ${this.stations[0].name} — ${this.stations[this.stations.length - 1].name}`;
+    this.days = getTrainDays(trainId, scheduleData);
+    this.title.setTitle(getTitle('Train ' + this.header));
   }
 }

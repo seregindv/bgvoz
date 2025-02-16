@@ -1,3 +1,3 @@
 export function getTitle(title: string) {
-    return 'BG:voz - ' + title;
+    return 'BG:voz — ' + title;
 }

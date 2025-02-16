@@ -105,10 +105,35 @@ select {
     color: #999;
 }
 
-.message.error{
+.message.error {
     color: red;
 }
 
 .hidden {
     display: none !important;
+}
+
+.stations {
+    margin-top: 2lh;
+}
+
+.stations .station {
+    min-height: 2lh;
+    display: flex;
+}
+
+.stations .station .name {
+    flex: 1 0 auto;
+}
+
+.stations .station .links{
+    padding-right: 10px;
+}
+
+.stations .station .links *{
+    height: 2lh;
+}
+
+.stations .station .links *+*{
+    margin-left: 10px;
 }

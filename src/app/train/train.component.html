@@ -1,1 +1,11 @@
-<p>train works!</p>
+<div class="stations">
+    <div class="station" *ngFor="let station of stations">
+        <div class="name">{{station.name}}</div>
+        <div class="links">
+            <a [href]="station.google" target="_blank"><img src="google.svg"></a>
+            <a [href]="station.osmand" target="_blank"><img src="osmand.svg"></a>
+            <a [href]="station.yandex" target="_blank"><img src="yandex.svg"></a>
+        </div>
+        <div>{{station.time | currency : ' '}}</div>
+    </div>
+</div>

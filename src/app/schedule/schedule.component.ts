@@ -7,11 +7,12 @@ import { Train } from '../../data/train';
 import { Station } from '../../data/station';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { ScheduleData } from '../../data/schedule-data';
+import { getTitle } from '../../helpers/title';
 
 @Component({
   selector: 'app-schedule',
   imports: [CommonModule, FormsModule, RouterModule],
-  providers: [DataService],
   templateUrl: './schedule.component.html',
   encapsulation: ViewEncapsulation.None
 })
@@ -134,7 +135,7 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
       queryParams,
       queryParamsHandling: 'merge',
     });
-    this.title.setTitle(`BG:voz - ${departure.name}-${arrival.name}`);
+    this.title.setTitle(getTitle(`${departure.name}-${arrival.name}`));
   }
 
   swap() {
@@ -179,13 +180,11 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
     return result;
   }
 
-  private showSchedule(schedule: Schedule) {
-    this.stations = Object.keys(schedule.stations)
-      .map(k => ({ id: k, data: schedule.stations[k] }))
-      .sort((a, b) => a.data.name.localeCompare(b.data.name));
-    this.schedule = schedule;
-    this.holidayTrains = new Set(schedule.holidayTrains);
-    this.workdayTrains = new Set(schedule.workdayTrains);
+  private showSchedule(scheduleData: ScheduleData) {
+    this.stations = scheduleData.stations;
+    this.schedule = scheduleData.schedule;
+    this.holidayTrains = scheduleData.holidayTrains;
+    this.workdayTrains = scheduleData.workdayTrains;
   }
 
   private now() {

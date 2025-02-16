@@ -1,13 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Schedule } from '../data/schedule';
-import { Observable } from 'rxjs';
+import { map, Observable, shareReplay } from 'rxjs';
+import { ScheduleData } from '../data/schedule-data';
 
 @Injectable()
 export class DataService {
+  private scheduleData?: Observable<ScheduleData>;
+
   constructor(private httpClient: HttpClient) { }
 
-  getData(): Observable<Schedule> {
-    return this.httpClient.get<Schedule>('train-data.json');
+  getData(): Observable<ScheduleData> {
+    return this.scheduleData ??= this.httpClient.get<Schedule>('train-data.json').pipe(
+      map(schedule => ({
+        stations: Object.keys(schedule.stations)
+          .map(k => ({ id: k, data: schedule.stations[k] }))
+          .sort((a, b) => a.data.name.localeCompare(b.data.name)),
+        schedule: schedule,
+        holidayTrains: new Set(schedule.holidayTrains),
+        workdayTrains: new Set(schedule.workdayTrains)
+      })),
+      shareReplay());
   }
 }

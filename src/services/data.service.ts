@@ -18,7 +18,8 @@ export class DataService {
           .sort((a, b) => a.data.name.localeCompare(b.data.name)),
         schedule: schedule,
         holidayTrains: new Set(schedule.holidayTrains),
-        workdayTrains: new Set(schedule.workdayTrains)
+        workdayTrains: new Set(schedule.workdayTrains),
+        holidays: schedule.holidays
       })),
       shareReplay());
   }

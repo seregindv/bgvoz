@@ -40,6 +40,10 @@ select {
     color: #333;
 }
 
+.train.not-today{
+    text-decoration: line-through;
+}
+
 .train .departure-time {
     font-size: 22px;
     line-height: 26px;
@@ -123,6 +127,10 @@ select {
 
 .stations .station {
     height: 40px;
+}
+
+.stations .station.in-route {
+    font-weight: bold;
 }
 
 .stations .name {

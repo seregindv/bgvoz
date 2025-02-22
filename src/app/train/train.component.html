@@ -1,7 +1,7 @@
 <div class="stations">
     <div class="header" [ngClass]="days">{{header}}</div>
     <table style="width: 100%">
-        <tr class="station" *ngFor="let station of stations">
+        <tr class="station" [ngClass]="{ 'in-route': station.inRoute }" *ngFor="let station of stations">
             <td class="name">{{station.name}}</td>
             <td class="links">
                 <a [href]="station.apple" target="_blank"><img src="apple.svg"></a>

@@ -6,4 +6,5 @@ export class ScheduleData {
     schedule: Schedule = null!;
     holidayTrains: Set<string> = null!;
     workdayTrains: Set<string> = null!;
+    holidays: string[] = null!;
 }

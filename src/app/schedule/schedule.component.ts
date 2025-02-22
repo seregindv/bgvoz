@@ -9,6 +9,7 @@ import { Title } from '@angular/platform-browser';
 import { ScheduleData } from '../../data/schedule-data';
 import { getTitle } from '../../helpers/title';
 import { getTrainDays } from '../../helpers/train';
+import { getDateStatus, getDuration, getTime } from '../../helpers/date';
 
 @Component({
   selector: 'app-schedule',
@@ -64,7 +65,8 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
       return;
     }
     const trains: Train[] = [];
-    const now = this.now();
+    const now = getTime();
+    const todayStatus = getDateStatus(this.scheduleData.holidays);
     const schedule = this.scheduleData.schedule;
     const departure = schedule.stations[this.from];
     const arrival = schedule.stations[this.to];
@@ -93,22 +95,28 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
       if (!late) {
         anyUpcoming = true;
       }
+      const trainDays = getTrainDays(trainId, this.scheduleData);
       trains.push({
         id: trainId,
         from: trainFrom,
         to: trainTo,
-        days: getTrainDays(trainId, this.scheduleData),
+        days: trainDays,
         origin: schedule.stations[originStationId],
         destination: schedule.stations[destinationStationId],
         late,
-        duration: this.getDuration(trainFrom, trainTo),
+        duration: getDuration(trainFrom, trainTo),
         departure,
-        arrival
+        arrival,
+        runsToday: !trainDays || trainDays === todayStatus
       });
     }
     this.trains = trains.sort((a, b) => a.from - b.from);
     if (!anyUpcoming) {
-      this.trains.forEach(t => t.late = false);
+      const tomorrowStatus = getDateStatus(this.scheduleData.holidays, true);
+      this.trains.forEach(t => {
+        t.late = false;
+        t.runsToday = !t.days || t.days === tomorrowStatus;
+      });
     }
 
     let waitTimeIndex = 0;
@@ -117,7 +125,7 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
       if (train.late) {
         continue;
       }
-      train.waitTime = (train.from == now) ? 'now' : ('in ' + this.getDuration(now, train.from))
+      train.waitTime = (train.from == now) ? 'now' : ('in ' + getDuration(now, train.from))
       waitTimeIndex++;
     }
 
@@ -155,36 +163,8 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
     this.isError = isError;
   }
 
-  private getDuration(from: number, to: number) {
-    if (from > to) {
-      to += 24;
-    }
-    const minuteDiff = Math.round(to * 100 % 100 - from * 100 % 100)
-    const hourDiff = Math.floor(to) - Math.floor(from);
-    let result = '';
-    if (minuteDiff === 0 && hourDiff === 0) {
-      return result;
-    }
-    const diff = hourDiff * 60 + minuteDiff;
-    const minutes = diff % 60;
-    const hours = Math.floor(diff / 60);
-    if (minutes > 0) {
-      result = `${minutes} ${minutes > 1 ? 'minutes' : 'minute'}`
-    }
-    if (hours > 0) {
-      const hourResult = `${hours} ${hours > 1 ? 'hours' : 'hour'}`;
-      result = result ? `${hourResult} ${result}` : hourResult;
-    }
-    return result;
-  }
-
   private showSchedule(scheduleData: ScheduleData) {
     this.stations = scheduleData.stations;
     this.scheduleData = scheduleData;
-  }
-
-  private now() {
-    const today = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Belgrade" }));
-    return today.getHours() + today.getMinutes() / 100;
   }
 }

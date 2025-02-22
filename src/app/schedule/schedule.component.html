@@ -24,7 +24,7 @@
 <div class="trains">
   <div [class.hidden]="!message" [class.error]="isError" class="message">{{message}}</div>
   <a [routerLink]="['/train', train.id]" [queryParams]="{ from, to }" *ngFor="let train of trains" #train class="train"
-    [ngClass]="train.days" [class.late]="train.late">
+    [ngClass]="train.runsToday ? train.days : [train.days, 'not-today']" [class.late]="train.late">
     <div class="train-label" [class.hidden]="!train.waitTime">{{train.waitTime}}</div>
     <div>{{train.id}} {{train.origin.name}} — {{train.destination.name}}</div>
     <div class="time-line">

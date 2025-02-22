@@ -12,4 +12,5 @@ export class Train {
     departure: Station = null!;
     arrival: Station = null!;
     waitTime?: string;
+    runsToday?: boolean;
 }

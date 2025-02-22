@@ -28,7 +28,10 @@ export class TrainComponent implements OnInit {
     });
   }
   private show(scheduleData: ScheduleData) {
-    const trainId = this.activatedRoute.snapshot.params['id'];
+    const snapshot = this.activatedRoute.snapshot;
+    const trainId = snapshot.params['id'];
+    const stationFrom = snapshot.queryParams['from'];
+    const stationTo = snapshot.queryParams['to'];
     const train = scheduleData.schedule.trains[trainId];
     const stations = scheduleData.schedule.stations;
     this.stations = Object.keys(train).map(stationId => {
@@ -41,9 +44,24 @@ export class TrainComponent implements OnInit {
         google: `https://www.google.com/maps/search/?api=1&query=${station.lat},${station.lon}&query_place_id=${station.placeId}`,
         osmand: `https://osmand.net/map?pin=${station.lat},${station.lon}`,
         // yandex: `https://maps.yandex.ru/?ll=${station.lon},${station.lat}&text=${station.name}&z=17`
-        yandex: `https://yandex.com/maps?whatshere%5Bpoint%5D=${station.lon}%2C${station.lat}`
+        yandex: `https://yandex.com/maps?whatshere%5Bpoint%5D=${station.lon}%2C${station.lat}`,
       };
     }).sort((a, b) => a.time - b.time);
+
+    let inRoute = false;
+    if (stationFrom && stationTo) {
+      for (const station of this.stations) {
+        if (station.id === stationFrom) {
+          inRoute = true;
+        }
+        if (inRoute) {
+          station.inRoute = true;
+        }
+        if (station.id === stationTo) {
+          break;
+        }
+      }
+    }
 
     this.header = `${trainId} ${this.stations[0].name} — ${this.stations[this.stations.length - 1].name}`;
     this.days = getTrainDays(trainId, scheduleData);

@@ -44,6 +44,14 @@ select {
     text-decoration: line-through;
 }
 
+.train .header {
+    display: flex;
+}
+
+.train .title {
+    flex: 1 0 auto;
+}
+
 .train .departure-time {
     font-size: 22px;
     line-height: 26px;

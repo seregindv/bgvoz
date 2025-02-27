@@ -25,8 +25,15 @@
   <div [class.hidden]="!message" [class.error]="isError" class="message">{{message}}</div>
   <a [routerLink]="['/train', train.id]" [queryParams]="{ from, to }" *ngFor="let train of trains" #train class="train"
     [ngClass]="train.runsToday ? train.days : [train.days, 'not-today']" [class.late]="train.late">
-    <div class="train-label" [class.hidden]="!train.waitTime">{{train.waitTime}}</div>
-    <div>{{train.id}} {{train.origin.name}} — {{train.destination.name}}</div>
+    <div class="header">
+      <div class="title">
+        <div class="train-label" [class.hidden]="!train.waitTime">{{train.waitTime}}</div>
+        <div>{{train.id}} {{train.origin.name}} — {{train.destination.name}}</div>
+      </div>
+      <div>
+        <a [routerLink]="['/schema', train.id]" [queryParams]="{ from, to }">Schema</a>
+      </div>
+    </div>
     <div class="time-line">
       <div class="departure-time">{{train.from | currency : ' '}}</div>
       <div class="line"></div>

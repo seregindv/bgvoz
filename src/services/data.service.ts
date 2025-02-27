@@ -16,7 +16,7 @@ export class DataService {
         stations: Object.keys(schedule.stations)
           .map(k => ({ id: k, data: schedule.stations[k] }))
           .sort((a, b) => a.data.name.localeCompare(b.data.name)),
-        schedule: schedule,
+        schedule: schedule  ,
         holidayTrains: new Set(schedule.holidayTrains),
         workdayTrains: new Set(schedule.workdayTrains),
         holidays: schedule.holidays

@@ -122,7 +122,7 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
     let waitTimeIndex = 0;
     for (let i = 0; i < this.trains.length && waitTimeIndex < 3; i++) {
       const train = this.trains[i];
-      if (train.late) {
+      if (train.late || !train.runsToday) {
         continue;
       }
       train.waitTime = (train.from == now) ? 'now' : ('in ' + getDuration(now, train.from))

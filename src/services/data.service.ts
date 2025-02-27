@@ -11,7 +11,7 @@ export class DataService {
   constructor(private httpClient: HttpClient) { }
 
   getData(): Observable<ScheduleData> {
-    return this.scheduleData ??= this.httpClient.get<Schedule>('train-data.json').pipe(
+    return this.scheduleData ??= this.httpClient.get<Schedule>('train-data.json?v=1').pipe(
       map(schedule => ({
         stations: Object.keys(schedule.stations)
           .map(k => ({ id: k, data: schedule.stations[k] }))

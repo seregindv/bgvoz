@@ -1,7 +1,9 @@
 <div class="form">
 
   <div>
-    From
+    <div>From
+      <span style="float: right; color: gray;">{{period}}</span>
+    </div>
     <select [(ngModel)]="from">
       <option *ngFor="let station of stations" [value]="station.id">{{station.data.name}}</option>
     </select>

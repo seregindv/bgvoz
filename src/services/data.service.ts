@@ -19,7 +19,9 @@ export class DataService {
         schedule: schedule,
         holidayTrains: new Set(schedule.holidayTrains),
         workdayTrains: new Set(schedule.workdayTrains),
-        holidays: schedule.holidays
+        holidays: schedule.holidays,
+        startDate: schedule.startDate,
+        endDate: schedule.endDate
       })),
       shareReplay());
   }

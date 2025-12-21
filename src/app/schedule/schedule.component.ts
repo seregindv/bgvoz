@@ -25,6 +25,7 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
   trains?: Train[];
   isError = false;
   message?: string;
+  period?: string;
   @ViewChildren('train') trainElements: QueryList<ElementRef> = null!;
 
   constructor(private dataService: DataService, private router: Router, private activatedRoute: ActivatedRoute, private title: Title) {
@@ -164,6 +165,7 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
   }
 
   private showSchedule(scheduleData: ScheduleData) {
+    this.period = `${new Date(scheduleData.startDate).toLocaleDateString()} - ${new Date(scheduleData.endDate).toLocaleDateString()}`;
     this.stations = scheduleData.stations;
     this.scheduleData = scheduleData;
   }

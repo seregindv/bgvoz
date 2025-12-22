@@ -1,5 +1,10 @@
 <div class="stations">
-    <div class="header" [ngClass]="days">{{header}}</div>
+    <div class="header" [ngClass]="days">
+        {{header}}
+        <a [routerLink]="['/schema', id]" [queryParams]="{ from, to }" style="margin-left: auto">
+            <img class="icon" style="width: 30px; height: 30px" src="map.svg" alt="Schema">
+        </a>
+    </div>
     <table style="width: 100%">
         <tr class="station" [ngClass]="{ 'in-route': station.inRoute }" *ngFor="let station of stations">
             <td class="name">{{station.name}}</td>

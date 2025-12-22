@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { ScheduleData } from '../../data/schedule-data';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TrainStation } from './train-station';
 import { getTrainDays } from '../../helpers/train';
@@ -10,13 +10,16 @@ import { getTitle } from '../../helpers/title';
 
 @Component({
   selector: 'app-train',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './train.component.html'
 })
 export class TrainComponent implements OnInit {
   stations?: TrainStation[];
   header?: string;
   days?: string;
+  id?: string;
+  from?: string;
+  to?: string;
 
   constructor(private dataService: DataService, private activatedRoute: ActivatedRoute, private title: Title) { }
 
@@ -32,6 +35,9 @@ export class TrainComponent implements OnInit {
     const trainId = snapshot.params['id'];
     const stationFrom = snapshot.queryParams['from'];
     const stationTo = snapshot.queryParams['to'];
+    this.id = trainId;
+    this.from = stationFrom;
+    this.to = stationTo;
     const train = scheduleData.schedule.trains[trainId];
     const stations = scheduleData.schedule.stations;
     this.stations = Object.keys(train).map(stationId => {

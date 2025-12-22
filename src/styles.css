@@ -133,7 +133,7 @@ select {
     min-height: 3lh;
     display: flex;
     align-items: center;
-    padding-left: 16px;
+    padding: 0 16px;
     font-size: 18px;
 }
 

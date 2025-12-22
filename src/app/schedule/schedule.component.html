@@ -33,7 +33,9 @@
         <div>{{train.id}} {{train.origin.name}} — {{train.destination.name}}</div>
       </div>
       <div>
-        <a [routerLink]="['/schema', train.id]" [queryParams]="{ from, to }">Schema</a>
+        <a [routerLink]="['/schema', train.id]" [queryParams]="{ from, to }">
+          <img class="icon" style="width: 30px; height: 30px" src="map.svg" alt="Schema">
+        </a>
       </div>
     </div>
     <div class="time-line">

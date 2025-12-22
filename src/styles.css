@@ -87,6 +87,10 @@ select {
     color: #C0C0C0
 }
 
+.train.late .icon {
+    opacity: 0.3;
+}
+
 .train .route {
     display: flex;
 }

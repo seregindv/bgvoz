@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Train Card – Light Theme</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .train-card {
+      background: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      padding: 20px;
+      width: 340px;
+      box-sizing: border-box;
+      border: 1px solid #e6e6e6;
+    }
+
+    .train-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .train-number {
+      font-weight: bold;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .train-type {
+      font-size: 14px;
+      background: #e9f1ff;
+      color: #2f6bd8;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .train-time {
+      margin: 18px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .time-block {
+      text-align: center;
+    }
+
+    .time-block span {
+      display: block;
+    }
+
+    .time {
+      font-size: 26px;
+      font-weight: bold;
+      color: #111;
+    }
+
+    .station {
+      font-size: 14px;
+      color: #777;
+    }
+
+    .arrow {
+      font-size: 20px;
+      color: #555;
+    }
+
+    .train-footer {
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .status {
+      padding: 4px 10px;
+      background: #e8ffe8;
+      color: #2f8a2f;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="train-card">
+    <div class="train-header">
+      <div class="train-number">S1 – 2342</div>
+      <div class="train-type">Regional</div>
+    </div>
+
+    <div class="train-time">
+      <div class="time-block">
+        <span class="time">14:52</span>
+        <span class="station">Warszawa Gdańska</span>
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="time-block">
+        <span class="time">15:42</span>
+        <span class="station">Pruszków</span>
+      </div>
+    </div>
+
+    <div class="train-footer">
+      <div>Platform 4</div>
+      <div class="status">On Time</div>
+    </div>
+  </div>
+
+</body>
+</html>

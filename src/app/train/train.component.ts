@@ -51,6 +51,7 @@ export class TrainComponent implements OnInit {
         osmand: `https://osmand.net/map?pin=${station.lat},${station.lon}`,
         // yandex: `https://maps.yandex.ru/?ll=${station.lon},${station.lat}&text=${station.name}&z=17`
         yandex: `https://yandex.com/maps?whatshere%5Bpoint%5D=${station.lon}%2C${station.lat}`,
+        mapsme: `https://maps.me/link/ge0/${station.mapsme}`
       };
     }).sort((a, b) => a.time - b.time);
 

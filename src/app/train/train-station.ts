@@ -6,5 +6,6 @@ export interface TrainStation {
     google: string;
     osmand: string;
     yandex: string;
+    mapsme: string;
     inRoute?: boolean;
 }

@@ -9,9 +9,10 @@
         <tr class="station" [ngClass]="{ 'in-route': station.inRoute }" *ngFor="let station of stations">
             <td class="name">{{station.name}}</td>
             <td class="links">
-                <a [href]="station.apple" target="_blank"><img src="apple.svg"></a>
                 <a [href]="station.google" target="_blank"><img src="google.svg"></a>
                 <a [href]="station.osmand" target="_blank"><img src="osmand.svg"></a>
+                <a [href]="station.apple" target="_blank"><img src="apple.svg"></a>
+                <a [href]="station.mapsme" target="_blank"><img src="mapsme.svg"></a>
                 <a [href]="station.yandex" target="_blank"><img src="yandex.svg"></a>
             </td>
             <td class="time">{{station.time | currency : ' '}}</td>
